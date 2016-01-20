@@ -1,3 +1,6 @@
+require 'representable'
+require 'representable/xml'
+
 require 'google_contacts_api/api'
 require 'google_contacts_api/contacts'
 require 'google_contacts_api/groups'
@@ -9,3 +12,4 @@ require 'google_contacts_api/result'
 require 'google_contacts_api/group'
 require 'google_contacts_api/contact'
 require 'google_contacts_api/version'
+require 'google_contacts_api/xml'
