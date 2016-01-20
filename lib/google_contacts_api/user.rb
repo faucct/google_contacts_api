@@ -1,8 +1,11 @@
+require 'google_contacts_api/user/photos'
+
 module GoogleContactsApi
   class User
     include GoogleContactsApi::Contacts
     include GoogleContactsApi::Groups
-    
+    include Photos
+
     attr_reader :api
     def initialize(oauth)
       @api = GoogleContactsApi::Api.new(oauth)
