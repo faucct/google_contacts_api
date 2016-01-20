@@ -35,6 +35,15 @@ module GoogleContactsApi
       result
     end
 
+    def _get(link)
+      response = @oauth.get(link)
+
+      case self.class.parse_response_code(response)
+      when 400...600 then return nil
+      else return response.body
+      end
+    end
+
     # Post request to specified link, with query params
     # Not tried yet, might be issues with params
     def post(link, params = {}, headers = {})
