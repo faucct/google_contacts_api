@@ -103,5 +103,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<travis-lint>, [">= 0"])
   end
-end
 
+  s.add_dependency 'representable'
+  s.add_development_dependency 'equivalent-xml'
+end
