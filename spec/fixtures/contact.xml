@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<entry gd:etag="*">
+<entry xmlns:gContact="http://schemas.google.com/contact/2008" xmlns:gd="http://schemas.google.com/g/2005" gd:etag="contactEtag">
   <id>http://www.google.com/m8/feeds/contacts/default/base/123</id>
   <updated>2008-02-28T18:47:02.303Z</updated>
   <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/contact/2008#contact"/>
