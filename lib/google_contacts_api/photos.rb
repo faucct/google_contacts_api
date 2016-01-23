@@ -4,17 +4,16 @@ module GoogleContactsApi
       @api = api
     end
 
-    def upload(email, contact_id, file)
+    def upload(email, contact_id, file, etag)
       response = @api.put(
         "photos/media/#{email}/#{contact_id}",
         body: File.binread(file.path),
         headers: {
           'Content-Type': 'image/*',
+          'If-match': etag,
         }
       )
-      contact = OpenStruct.new
-      XML::ContactParser.new(contact).from_xml(response.body)
-      contact.photo_link
+      XML::AddPhotoResponseParser.new(OpenStruct.new).from_xml(response.body)
     end
   end
 end

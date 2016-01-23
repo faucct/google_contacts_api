@@ -5,7 +5,7 @@ describe GoogleContactsApi::Photos do
   let(:api) { double }
 
   describe '#upload' do
-    subject(:upload) { photos.upload('default', 'contactId', file) }
+    subject(:upload) { photos.upload('default', 'contactId', file, '*') }
     let(:file) do
       Tempfile.new('image').tap do |file|
         binary_file = File.open(file.path, 'wb')
@@ -13,17 +13,18 @@ describe GoogleContactsApi::Photos do
         binary_file.close
       end
     end
+    let(:response) { load_file('add_photo_response.xml') }
 
     it 'uploads the file' do
       expect(api).to receive(:put) do |url, body:, headers:|
         expect(url).to eq 'photos/media/default/contactId'
         expect(body).to eq 'file contents'
-        expect(headers).to eq 'Content-Type': 'image/*'
+        expect(headers).to eq 'Content-Type': 'image/*', 'If-match': '*'
 
-        double(body: load_file('contact_entry.xml'))
+        double(body: response)
       end
 
-      is_expected.to eq 'https://www.google.com/m8/feeds/photos/media/default/123'
+      is_expected.to eq GoogleContactsApi::XML::AddPhotoResponseParser.new(OpenStruct.new).from_xml(response)
     end
   end
 end
